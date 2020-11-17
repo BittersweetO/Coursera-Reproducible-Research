@@ -1,0 +1,9 @@
+What is knitr?
+An R package  that support RMarkdown, LaTeX, and HTML as documentation languages and can export to PDF, HTML. Built right into RStudio for your convinience 
+
+What is knitr Food For?
+* Manuals
+* Short.medium-length technical documents
+* Tutorials
+* Reports (esp. if generated periodically)
+* Data preprocessing documents/summaries

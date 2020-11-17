@@ -1,0 +1,127 @@
+---
+title: "Project1"
+author: "Demydiuk Oleksii"
+date: "16 11 2020"
+output: html_document
+---
+
+```{r global-options, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+# Reproducible Research - Course Project 1
+
+### Loading and preprocessing data
+```{r}
+unzip("repdata_data_activity.zip")
+data <- read.csv("activity.csv")
+```
+### What is a mean total number of steps taken per day?
+```{r}
+library(tidyverse)
+library(lubridate)
+Sys.setlocale("LC_TIME", "English")
+p <- data %>%
+  group_by(date)%>%
+  summarise(steps = sum(steps, na.rm = T))%>%
+  ggplot(aes(x=steps)) + geom_histogram(fill="steelblue")
+ggsave("plot1.png")
+p
+
+```
+
+### Mean and Median number of steps per day
+```{r}
+mm <- data %>%
+   group_by(date) %>%
+  summarise(steps = sum(steps, na.rm = T))%>%
+  ungroup()%>%
+  summarise(mean = mean(steps),
+            median = median(steps))
+ 
+```
+Mean is `r mm$mean`
+
+Median is `r mm$median`
+
+### What is the average daily activity pattern?
+
+```{r}
+daily_activity <- data %>%
+  group_by(interval)%>%
+  summarise(steps_average = mean(steps, na.rm = T))
+
+max_int <- daily_activity$interval[daily_activity$steps_average == max(daily_activity$steps_average)]
+
+p <- ggplot(daily_activity,aes(x=interval,y=steps_average)) + geom_line(color='steelblue')
+ggsave("plot2.png")
+p
+
+
+```
+
+`r max_int`th 5-minute interval contains the maximum average number of steps across all the days in the dataset
+
+
+## Imputing missing values
+
+```{r}
+na_count <- sum(is.na(data))
+
+rep_data <- data %>%
+  group_by(interval)%>%
+  mutate(steps_average = mean(steps, na.rm = T),
+         steps = ifelse(is.na(steps) == T, steps_average, steps))%>%
+  select(-steps_average)
+  
+
+```
+There is `r na_count` missing values was in dataset!
+
+
+### What is a mean total number of steps taken per day?
+```{r}
+library(tidyverse)
+library(lubridate)
+Sys.setlocale("LC_TIME", "English")
+p<-rep_data %>%
+  group_by(date)%>%
+  summarise(steps = sum(steps, na.rm = T))%>%
+  ggplot(aes(x=steps)) + geom_histogram(fill="steelblue")
+ggsave("plot3.png")
+p
+
+```
+
+### Mean and Median number of steps per day
+```{r}
+rmm <- rep_data %>%
+   group_by(date) %>%
+  summarise(steps = sum(steps, na.rm = T))%>%
+  ungroup()%>%
+  summarise(mean = mean(steps),
+            median = median(steps))
+ 
+```
+
+Mean is `r rmm$mean`
+
+Median is `r mm$median`
+
+
+Of course total number of steps by day increase
+
+### Are there differences in activity patterns between weekdays and weekends?
+
+```{r}
+p <- rep_data %>%
+  mutate(week_day = weekdays(as.Date(date)),
+        is_weekend = as.factor(ifelse((week_day %in% c("Saturday","Sunday")) == T, "weekend", "weekday")))%>%
+  group_by(interval, is_weekend)%>%
+  summarise(steps_average = mean(steps, na.rm = T))%>%
+  ggplot(aes(x=interval,y=steps_average, color = is_weekend)) + geom_line() + facet_wrap(~is_weekend, ncol = 1, nrow = 2)
+ggsave("plot4.png")
+p
+
+
+```

@@ -1,0 +1,38 @@
+Markdown is a text-to-HTML conversion tool for web writers. Markdown allows you to write using an easy-to-read, easy-to-write plain text format, then convert it to structurally valid XHTML(or HTML).
+
+MARKDOWN SYNTAX
+
+Italics
+*This text will appear italicized!*
+
+Bold
+**This text will appear bold!**
+
+Headings
+# This is a main headings - Largest header
+## This is a secondary headings - middle header
+### This is a tertiary headings - smallest header
+
+Unordered Lists
+- first item in list
+- second item in list
+- third item in list
+
+Ordered Lists
+1. first item in list
+2. second item in list
+3. third item in list
+
+Links
+[John Hopkins Bloomberg School of Public Health](http://www.jhsph.edu/)
+[Download R](http://www.r-project.org/)
+[rStudio](http://www.rstudio.com/)
+
+Advanced Links
+I spend so much time reading [R bloggers][1] and [Simply Statistics[2][2]!
+[1]: https://www.r-bloggers.com/ "R bloggers"
+[2]: https://simplystatistics.org/ "Simply Statistics"
+
+Newlines
+-Newlines require a double space after the end of a line
+

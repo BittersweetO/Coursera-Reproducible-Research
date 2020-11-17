@@ -1,0 +1,10 @@
+What is R Markdown?
+- R markdown is the integration of R code with markdown
+- Allows one to create documents containing "live" R code
+- R code is evaluated as part of the processing of the markdown
+- Result from R code are inserted into markdown document
+- A code tool in literate statistical programming
+- R markdown can be converted to standard markdown using knitr package in R
+- Markdown can be converted to HTML using the markdown package in R
+- Any basic text editor can be used to create a markdown document
+- the R markdown --> markdown --> HTML work flow can be easily managed using R Studio

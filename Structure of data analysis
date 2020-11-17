@@ -1,0 +1,29 @@
+Structure of data analysis(Emails example):
+   - Define the question
+        *Can I automatically detect emails that are SPAM that are not?
+   - Define the ideal data set
+        *Can I use quantitative charachteristics of emails to classify them as SPAM/HAM?
+              !Descriptive - a whole population
+                  *all emails in the universe
+              !Exploratory - a random sample with many variables measured
+                  *sample emails
+              !Inferential - the right population randomly sampled
+                  *careful about email sampling mechanism and the defenition pf the population that you`re sampling from
+              !Predictive - a training and test data set fromm the sample population
+                  *You`re going to need something like a training set and test data set from a emails population that you`re  interested in
+              !Casual - data from a randomized study
+                  *if I modify this component, then something else heppens. So, you`re going to need experimental data, and one type of experimental data from something like randomized trial
+              !Mechanistic - data about all components of system
+
+   - Determine what data you can access
+        *Something you can find data free on the web
+        *Other times you need ti buy the data
+        *If the data dont exist, you may to generate iy yourself
+   - Obtain the data
+   - Clean the dara
+   - Exploratory data analysis
+   - Statistical prediction/modeling
+   - Interpret results
+   - Challenge results
+   - Sunthesize/write up results
+   - Create reproducible code
