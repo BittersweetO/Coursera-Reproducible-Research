@@ -16,7 +16,9 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 unzip("repdata_data_activity.zip")
 data <- read.csv("activity.csv")
 ```
+
 ### What is a mean total number of steps taken per day?
+
 ```{r}
 library(tidyverse)
 library(lubridate)
@@ -31,6 +33,7 @@ p
 ```
 
 ### Mean and Median number of steps per day
+
 ```{r}
 mm <- data %>%
    group_by(date) %>%
@@ -76,6 +79,7 @@ rep_data <- data %>%
   
 
 ```
+
 There is `r na_count` missing values was in dataset!
 
 
@@ -94,6 +98,7 @@ p
 ```
 
 ### Mean and Median number of steps per day
+
 ```{r}
 rmm <- rep_data %>%
    group_by(date) %>%
@@ -107,7 +112,6 @@ rmm <- rep_data %>%
 Mean is `r rmm$mean`
 
 Median is `r mm$median`
-
 
 Of course total number of steps by day increase
 
